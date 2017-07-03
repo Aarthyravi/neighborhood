@@ -51,9 +51,9 @@ var ViewModel = function(){
     zoom: 13
   });
   // Initialize markers
-	var markers = [];
+  var markers = [];
   // Initialize infowindow
-	var infowindow = new google.maps.InfoWindow();
+  var infowindow = new google.maps.InfoWindow();
 
 
   // The following group uses the location array to create an array of markers on initialize.
