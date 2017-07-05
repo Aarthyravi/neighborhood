@@ -21,8 +21,8 @@ var locationInfo = function(data){
       title: data.title,
       animation: google.maps.Animation.DROP,
     });
-    // Create an onclick event to open an infowindow at each marker.
-  marker.addListener('click', function() {
+  /// Create an onclick event to open an infowindow at each marker.
+  this.marker.addListener('click', function() {
     populateInfoWindow(this, infowindow);
   });
 }
@@ -102,7 +102,7 @@ var ViewModel = function(){
       });
 
       // Open the infowindow on the correct marker
-      infowindow.open(this.map, marker);
+      infowindow.open(map, marker);
     }
   }
 }
