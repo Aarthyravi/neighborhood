@@ -15,14 +15,14 @@ var initialLocation = [
 var locationInfo = function(data){
   this.title = (data.title);
   this.location = (data.location);
-  this.marker = new google.maps.Marker({
+  this.marker = marker = new google.maps.Marker({
       map: map,
       position: data.location,
       title: data.title,
       animation: google.maps.Animation.DROP,
     });
     // Create an onclick event to open an infowindow at each marker.
-  this.marker.addListener('click', function() {
+  marker.addListener('click', function() {
     populateInfoWindow(this, infowindow);
   });
 }
@@ -55,7 +55,7 @@ var ViewModel = function(){
 	var infowindow = new google.maps.InfoWindow();
 
 
-  // The following group uses the location array to create an array of markers on initialize.
+ // The following group uses the location array to create an array of markers on initialize.
   for (var i = 0; i < initialLocation.length; i++) {
 
     // Get the position from the location array.
@@ -74,7 +74,7 @@ var ViewModel = function(){
   markers.push(marker);
 
   // Create an onclick event to open an infowindow at each marker.
-  this.marker.addListener('click', function() {
+  marker.addListener('click', function() {
     populateInfoWindow(this, infowindow);
   });
 }
