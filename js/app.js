@@ -15,6 +15,16 @@ var initialLocation = [
 var locationInfo = function(data){
   this.title = (data.title);
   this.location = (data.location);
+  this.marker = new google.maps.Marker({
+      map: map,
+      position: data.location,
+      title: data.title,
+      animation: google.maps.Animation.DROP,
+    });
+    // Create an onclick event to open an infowindow at each marker.
+  this.marker.addListener('click', function() {
+    populateInfoWindow(this, infowindow);
+  });
 }
 
 var ViewModel = function(){
@@ -31,18 +41,7 @@ var ViewModel = function(){
   this.changeLocation = function(clickLocation) {
     // Set current location to which user clicked.
 		self.currentLocation(clickLocation);
-    var index = self.locationList().indexOf(clickLocation);
-    var position1 = initialLocation[index].location;
-    var title1 = initialLocation[index].title;
-
-    // Create a marker per location, and put into markers array.
-    var marker1 = new google.maps.Marker({
-      map: map,
-      position: position1,
-      title: title1,
-      id: index
-    });
-    populateInfoWindow(marker1, infowindow);
+    populateInfoWindow(clickLocation.marker, infowindow);
   }
 
       // Initialize Google map
@@ -51,9 +50,9 @@ var ViewModel = function(){
     zoom: 13
   });
   // Initialize markers
-  var markers = [];
+	var markers = [];
   // Initialize infowindow
-  var infowindow = new google.maps.InfoWindow();
+	var infowindow = new google.maps.InfoWindow();
 
 
   // The following group uses the location array to create an array of markers on initialize.
@@ -72,14 +71,13 @@ var ViewModel = function(){
       id: i
     });
 
-   markers.push(marker);
+  markers.push(marker);
 
   // Create an onclick event to open an infowindow at each marker.
-  marker.addListener('click', function() {
+  this.marker.addListener('click', function() {
     populateInfoWindow(this, infowindow);
   });
 }
-
 
   // This function populates the infowindow when the marker is clicked. We'll only allow
   // one infowindow which will open at the marker that is clicked, and populate based
