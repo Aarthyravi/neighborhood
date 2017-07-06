@@ -12,20 +12,15 @@ var initialLocation = [
    location: {lat: 37.3519, lng: -121.9998},
  }
 ]
+
 var locationInfo = function(data){
   this.title = (data.title);
   this.location = (data.location);
-  this.marker = marker = new google.maps.Marker({
-      map: map,
-      position: data.location,
-      title: data.title,
-      animation: google.maps.Animation.DROP,
-    });
-  /// Create an onclick event to open an infowindow at each marker.
-  this.marker.addListener('click', function() {
-    populateInfoWindow(this, infowindow);
-  });
+  this.marker =  (data.marker);
 }
+
+var infowindow;
+var map;
 
 var ViewModel = function(){
   var self = this;
@@ -34,25 +29,25 @@ var ViewModel = function(){
 
   initialLocation.forEach(function(locationItem){
     self.locationList.push(new locationInfo(locationItem));
-  },this);
+  });
 
   this.currentLocation = ko.observable(this.locationList()[0]);
 
   this.changeLocation = function(clickLocation) {
-    // Set current location to which user clicked.
-		self.currentLocation(clickLocation);
+
+    //google.maps.event.trigger(clickLocation.marker, 'click')
     populateInfoWindow(clickLocation.marker, infowindow);
   }
+};
 
-      // Initialize Google map
-  var map = new google.maps.Map(document.getElementById('map'), {
+  // Initialize Google map
+  map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.3541, lng: -121.9552},
     zoom: 13
   });
-  // Initialize markers
-	var markers = [];
+
   // Initialize infowindow
-	var infowindow = new google.maps.InfoWindow();
+  infowindow = new google.maps.InfoWindow();
 
 
  // The following group uses the location array to create an array of markers on initialize.
@@ -71,13 +66,15 @@ var ViewModel = function(){
       id: i
     });
 
-  markers.push(marker);
+    // Add marker as a property of each Location.
+    initialLocation[i].marker = marker;
 
   // Create an onclick event to open an infowindow at each marker.
   marker.addListener('click', function() {
     populateInfoWindow(this, infowindow);
   });
-}
+ }
+
 
   // This function populates the infowindow when the marker is clicked. We'll only allow
   // one infowindow which will open at the marker that is clicked, and populate based
@@ -105,7 +102,6 @@ var ViewModel = function(){
       infowindow.open(map, marker);
     }
   }
-}
 
 // Initialize the Knockout View Model
 ko.applyBindings(new ViewModel());
