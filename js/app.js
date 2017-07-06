@@ -66,7 +66,7 @@ var ViewModel = function(){
     });
 
     // Add marker as a property of each Location.
-    initialLocation[i].marker = marker;
+    vm.locationList()[i].marker = marker;
 
   // Create an onclick event to open an infowindow at each marker.
   marker.addListener('click', function() {
@@ -103,4 +103,5 @@ var ViewModel = function(){
   }
 
 // Initialize the Knockout View Model
-ko.applyBindings(new ViewModel());
+var vm = new ViewModel();
+ko.applyBindings(vm);
