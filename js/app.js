@@ -34,14 +34,13 @@ var ViewModel = function(){
   this.currentLocation = ko.observable(this.locationList()[0]);
 
   this.changeLocation = function(clickLocation) {
-
     //google.maps.event.trigger(clickLocation.marker, 'click')
     populateInfoWindow(clickLocation.marker, infowindow);
   }
 };
-
+  function initMap(){
   // Initialize Google map
-  map = new google.maps.Map(document.getElementById('map'), {
+   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.3541, lng: -121.9552},
     zoom: 13
   });
@@ -74,7 +73,7 @@ var ViewModel = function(){
     populateInfoWindow(this, infowindow);
   });
  }
-
+}
 
   // This function populates the infowindow when the marker is clicked. We'll only allow
   // one infowindow which will open at the marker that is clicked, and populate based
