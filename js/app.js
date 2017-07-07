@@ -51,23 +51,22 @@ var ViewModel = function(){
 
   // Creates the search function to return matching list items and markers.
   this.List = ko.computed( function() {
-		var filter = self.searchTitle().toLowerCase();
-		if (!filter) {
-			self.locationList().forEach(function(locationItem){
-				locationItem.visible(true);
-        //marker = locationItem.marker;
-			});
-			return self.locationList();
-    } else {
-			return ko.utils.arrayFilter(self.locationList(), function(locationItem) {
-				var string = locationItem.title.toLowerCase();
-				var result = (string.search(filter) >= 0);
+    var filter = self.searchTitle().toLowerCase();
+    if (!filter) {
+      self.locationList().forEach(function(locationItem){
+        locationItem.visible(true);
+      });
+      return locationList();
+    }
+    else{
+      return ko.utils.arrayFilter(self.locationList(), function(locationItem) {
+        var string = locationItem.title.toLowerCase();
+        var result = (string.search(filter) >= 0);
         locationItem.visible(result);
-				return result;
-			});
-		}
-	}, self);
-
+        locationItem.visible(result);
+      });
+    }
+  },self);
 }
 
   function initMap(){
