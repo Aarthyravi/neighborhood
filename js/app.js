@@ -17,6 +17,17 @@ var locationInfo = function(data){
   this.title = (data.title);
   this.location = (data.location);
   this.marker =  (data.marker);
+  this.visible = ko.observable(true);
+
+  this.showMarker = ko.computed(function() {
+		if(this.visible() === true) {
+			this.marker.setMap(map);
+		} else {
+      this.marker.setMap(null);
+		}
+		return true;
+	}, this);
+
 }
 
 var infowindow;
@@ -24,6 +35,7 @@ var map;
 
 var ViewModel = function(){
   var self = this;
+  this.searchTitle = ko.observable('');
 
   this.locationList = ko.observableArray([]);
 
@@ -31,19 +43,42 @@ var ViewModel = function(){
     self.locationList.push(new locationInfo(locationItem));
   });
 
-  this.currentLocation = ko.observable(this.locationList()[0]);
+  //this.currentLocation = ko.observable(this.locationList()[0]);
 
   this.changeLocation = function(clickLocation) {
-    //google.maps.event.trigger(clickLocation.marker, 'click')
     populateInfoWindow(clickLocation.marker, infowindow);
   }
-};
+
+  // Creates the search function to return matching list items and markers.
+  this.List = ko.computed( function() {
+		var filter = self.searchTitle().toLowerCase();
+		if (!filter) {
+			self.locationList().forEach(function(locationItem){
+				locationItem.visible(true);
+        //marker = locationItem.marker;
+			});
+			return self.locationList();
+    } else {
+			return ko.utils.arrayFilter(self.locationList(), function(locationItem) {
+				var string = locationItem.title.toLowerCase();
+				var result = (string.search(filter) >= 0);
+        locationItem.visible(result);
+				return result;
+			});
+		}
+	}, self);
+
+}
+
   function initMap(){
   // Initialize Google map
    map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.3541, lng: -121.9552},
     zoom: 13
   });
+
+  // Create a new blank array for all the listing markers.
+  var markers = [];
 
   // Initialize infowindow
   infowindow = new google.maps.InfoWindow();
@@ -67,6 +102,9 @@ var ViewModel = function(){
 
     // Add marker as a property of each Location.
     vm.locationList()[i].marker = marker;
+
+    // Push the marker to our array of markers.
+    markers.push(marker);
 
   // Create an onclick event to open an infowindow at each marker.
   marker.addListener('click', function() {
