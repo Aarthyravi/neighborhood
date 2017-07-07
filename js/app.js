@@ -19,13 +19,15 @@ var locationInfo = function(data){
   this.marker =  (data.marker);
   this.visible = ko.observable(true);
 
+  thi
+
   this.showMarker = ko.computed(function() {
-		if(this.visible() === true) {
-			this.marker.setMap(map);
-		} else {
+    if(this.visible() === true) {
+      this.marker.setMap(map);
+    }else {
       this.marker.setMap(null);
-		}
-		return true;
+    }
+		 	return true;
 	}, this);
 
 }
