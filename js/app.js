@@ -19,15 +19,13 @@ var locationInfo = function(data){
   this.marker =  (data.marker);
   this.visible = ko.observable(true);
 
-  thi
-
   this.showMarker = ko.computed(function() {
     if(this.visible() === true) {
       this.marker.setMap(map);
     }else {
       this.marker.setMap(null);
     }
-		 	return true;
+    return true;
 	}, this);
 
 }
@@ -58,14 +56,14 @@ var ViewModel = function(){
       self.locationList().forEach(function(locationItem){
         locationItem.visible(true);
       });
-      return locationList();
+     return self.locationList();
     }
     else{
       return ko.utils.arrayFilter(self.locationList(), function(locationItem) {
         var string = locationItem.title.toLowerCase();
         var result = (string.search(filter) >= 0);
         locationItem.visible(result);
-        locationItem.visible(result);
+        return result;
       });
     }
   },self);
