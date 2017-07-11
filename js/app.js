@@ -1,6 +1,6 @@
 var initialLocation = [
   {
-    title: 'Laurelwood School',
+    title: 'Laurelwood Elementary School',
     location: {lat: 37.3431,lng: -122.0022},
   },
   {
@@ -10,7 +10,31 @@ var initialLocation = [
  {
    title: 'Burger King',
    location: {lat: 37.3519, lng: -121.9998},
- }
+ },
+ {
+   title: 'Lucky SuperMarket',
+   location: {lat: 37.3540, lng: -121.9980},
+ },
+ {
+   title: 'Peterson Middle School',
+   location: {lat: 37.3497, lng: -122.0072},
+ },
+ {
+   title: 'Pomeroy Elementary School',
+   location: {lat: 37.3480, lng: -121.9870},
+ },
+ {
+   title: 'Full Circle Farm',
+   location: {lat: 37.3459, lng: -122.0061},
+ },
+ {
+   title: 'Santa clara Central Park',
+   location: {lat: 37.3417, lng: -121.9752},
+ },
+ {
+   title: 'Pruneridge Golf Club',
+   location: {lat: 37.3319, lng: -121.9631},
+ },
 ]
 
 var locationInfo = function(data){
