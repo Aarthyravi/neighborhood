@@ -21,17 +21,21 @@ var locationInfo = function(data){
 
   this.showMarker = ko.computed(function() {
     if(this.visible() === true) {
-      this.marker.setMap(map);
+          
     }else {
       this.marker.setMap(null);
     }
     return true;
-	}, this);
+	},this);
 
 }
 
 var infowindow;
+
 var map;
+
+// Create a new blank array for all the listing markers.
+var markers = [];
 
 var ViewModel = function(){
   var self = this;
@@ -55,8 +59,8 @@ var ViewModel = function(){
     if (!filter) {
       self.locationList().forEach(function(locationItem){
         locationItem.visible(true);
-      });
-     return self.locationList();
+    });
+      return self.locationList();
     }
     else{
       return ko.utils.arrayFilter(self.locationList(), function(locationItem) {
@@ -75,9 +79,6 @@ var ViewModel = function(){
     center: {lat: 37.3541, lng: -121.9552},
     zoom: 13
   });
-
-  // Create a new blank array for all the listing markers.
-  var markers = [];
 
   // Initialize infowindow
   infowindow = new google.maps.InfoWindow();
