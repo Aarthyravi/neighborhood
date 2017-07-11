@@ -150,10 +150,12 @@ var ViewModel = function(){
         infowindow.setMarker = null;
       });
       var geocoder = new google.maps.Geocoder();
-      geocoder.geocode({'location': marker.position}, function(results, status) {
+      geocoder.geocode({'location': marker.position}, function(results, status)
+      {
           if (status === google.maps.GeocoderStatus.OK) {
             formaddress = results[0].formatted_address;
-            infowindow.setContent('<div>' + marker.title + '</div><div>' + formaddress + '</div>');
+            infowindow.setContent('<div>' + marker.title + '</div><div>' +
+               formaddress + '</div>');
 
         }
       });
