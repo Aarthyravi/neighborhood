@@ -76,13 +76,12 @@
     <div class="container">
       <div class="options-box">
         <h1>Santa Clara Neighborhood places</h1>
-         <div data-bind = "with: currentLocation">
-             <input data-bind = "text: title" id="textplace" type='text' placeholder="Enter The Location">
-             <input id="filter" type="button" value = "Filter">
+         <div class = "searchbar" id = "searchbar">
+             <input data-bind = "value: searchTitle, valueUpdate: 'afterkeydown'" id="textplace" type='text' placeholder="Enter The Location">
           </div>
           <div>
             <h4> Places In Santa Clara</h4>
-            <ul data-bind="foreach: locationList" class = "nav">
+            <ul data-bind="foreach: List" class = "nav">
               <li data-bind="click: $parent.changeLocation, text: title" class = "nav-item"></li>
             </ul>
             </div>
