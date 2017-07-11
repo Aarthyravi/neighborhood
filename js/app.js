@@ -48,8 +48,6 @@ var ViewModel = function(){
     self.locationList.push(new locationInfo(locationItem));
   });
 
-  //this.currentLocation = ko.observable(this.locationList()[0]);
-
   this.changeLocation = function(clickLocation) {
     populateInfoWindow(clickLocation.marker, infowindow);
   }
@@ -59,7 +57,6 @@ var ViewModel = function(){
     var filter = self.searchTitle().toLowerCase();
     if (!filter) {
       self.locationList().forEach(function(locationItem){
-        //locationItem.marker.setVisible(false);
         locationItem.visible(true);
     });
       return self.locationList();
@@ -68,7 +65,6 @@ var ViewModel = function(){
       return ko.utils.arrayFilter(self.locationList(), function(locationItem) {
         var string = locationItem.title.toLowerCase();
         var result = (string.search(filter) >= 0);
-        //locationList.marker.setVisible(true);
         locationItem.visible(result);
         return result;
       });
