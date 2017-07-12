@@ -38,7 +38,7 @@ var initialLocation = [
    location: {lat: 37.3979, lng: -121.9743},
  },
  {
-   titile: 'Rancho San Antonio County Park',
+   title: 'Rancho San Antonio County Park',
    location: {lat: 37.3329, lng: -122.0870},
  }
 ]
