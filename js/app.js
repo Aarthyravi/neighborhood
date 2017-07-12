@@ -7,10 +7,7 @@ var initialLocation = [
    title: 'Kaiser Permanente Medical Center',
    location: {lat: 37.336,lng: -121.9979},
  },
- {
-   title: 'Burger King',
-   location: {lat: 37.3519, lng: -121.9998},
- },
+
  {
    title: 'Lucky SuperMarket',
    location: {lat: 37.3540, lng: -121.9980},
@@ -28,13 +25,22 @@ var initialLocation = [
    location: {lat: 37.3459, lng: -122.0061},
  },
  {
-   title: 'Santa clara Central Park',
-   location: {lat: 37.3417, lng: -121.9752},
+   title: 'Santa clara High School',
+   location: {lat:37.3455, lng: -121.9819},
  },
+
  {
    title: 'Pruneridge Golf Club',
    location: {lat: 37.3319, lng: -121.9631},
  },
+ {
+   title: 'California\'s Great America',
+   location: {lat: 37.3979, lng: -121.9743},
+ },
+ {
+   titile: 'Rancho San Antonio County Park',
+   location: {lat: 37.3329, lng: -122.0870},
+ }
 ]
 
 var locationInfo = function(data){
@@ -149,16 +155,24 @@ var ViewModel = function(){
       infowindow.addListener('closeclick',function(){
         infowindow.setMarker = null;
       });
-      var geocoder = new google.maps.Geocoder();
-      geocoder.geocode({'location': marker.position}, function(results, status)
-      {
-          if (status === google.maps.GeocoderStatus.OK) {
-            formaddress = results[0].formatted_address;
-            infowindow.setContent('<div>' + marker.title + '</div><div>' +
-               formaddress + '</div>');
+      // Foursquare API
+    var foursquareUrl = "https://api.foursquare.com/v2/venues/search?query="+ marker.title +'&ll=' + marker.position.lat() + ',' +marker.position.lng()+'&client_id=WZBPPUK0LEKJUVBPOK33MHS5EZZNNYNJ0XYLKYEA1BE5JPT3&client_secret=IIFBYWMNBO0KIZ0XJKO5BIWQ1BHFGJZZQKGEL4E1ZUUY4T5F&v=20170711';
+    var foursquareRequestTimeout = setTimeout(function(){
+        window.alert("Failed to get Foursquare resources");
+    }, 8000);
 
-        }
-      });
+    $.ajax({
+      url: foursquareUrl,
+      dataType: "json",
+      success: function(data){
+        var fourSq = data.response.venues[0];
+        infowindow.setContent('<div><h3>' + fourSq.name + '</h3>' +
+           fourSq.location.address + '</div><div>' + fourSq.location.city +'</div>');
+
+        clearTimeout(foursquareRequestTimeout);
+      }
+    });
+
 
       // Open the infowindow on the correct marker
       infowindow.open(map, marker);
