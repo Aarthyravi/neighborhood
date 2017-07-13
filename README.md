@@ -1,7 +1,7 @@
 # Neighborhood Map
-  Here I have developed a single-page application featuring a map of neighborhood
+  1. Here I have developed a single-page application featuring a map of neighborhood
+  2. Google map loaded from Maps API.
   
-including: map markers to identify popular locations.
 
 A search function to easily discover these locations, and a listview to support simple browsing of all locations. 
 
