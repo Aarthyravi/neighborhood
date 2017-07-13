@@ -5,7 +5,8 @@
   * Clicking a marker on the map open the information window (infowindow) about the location.
   * Clicking a name in the list View open the information window(infowindow) for the asoociated marker.
   * The list of locations can be filterable with a text input.Filtering the list also filters the markers on the map. 
-  * Added functionality using third-party APIs to provide information when a map marker or list view entry is clicked 
+  * Added functionality using third-party APIs to provide information when a map marker or list view entry is clicked.
+    (location name,location address & location city)
 
 # Setup
 Download the Knockout framework. 
