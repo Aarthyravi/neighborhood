@@ -1,9 +1,11 @@
 # Neighborhood Map
   1. Here I have developed a single-page application featuring a map of neighborhood
   2. Google map loaded from Maps API.
-  
-
-A search function to easily discover these locations, and a listview to support simple browsing of all locations. 
+  3. App display the locations by default when the page is loaded.
+  4. Clicking a marker on the map open the information window (infowindow) about the location.
+  5. Clicking a name in the list View open the information window(infowindow) for the asoociated marker.
+  6. The list of locations can be filterable with a text input.Filtering the list also filters the markers on the map. 
+  7. Added functionality using third-party APIs to provide information when a map marker or list view entry is clicked 
 
 # Setup
 Download the Knockout framework. 
