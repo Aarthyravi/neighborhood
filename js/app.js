@@ -41,7 +41,7 @@ var initialLocation = [
    title: 'Rancho San Antonio County Park',
    location: {lat: 37.3329, lng: -122.0870},
  }
-]
+];
 
 var locationInfo = function(data){
   this.title = (data.title);
@@ -59,7 +59,7 @@ var locationInfo = function(data){
     return true;
 	},this);
 
-}
+};
 
 var infowindow;
 
@@ -80,7 +80,7 @@ var ViewModel = function(){
 
   this.changeLocation = function(clickLocation) {
     populateInfoWindow(clickLocation.marker, infowindow);
-  }
+  };
 
   // Creates the search function to return matching list items and markers.
   this.List = ko.computed( function() {
@@ -100,7 +100,7 @@ var ViewModel = function(){
       });
     }
   },self);
-}
+};
 
   function initMap(){
   // Initialize Google map
@@ -136,9 +136,10 @@ var ViewModel = function(){
     markers.push(marker);
 
   // Create an onclick event to open an infowindow at each marker.
-  marker.addListener('click', function() {
+  marker.addListener('click', clickMarker);
+  function clickMarker() {
       populateInfoWindow(this, infowindow);
-  });
+  }
  }
 }
 
@@ -157,10 +158,10 @@ var ViewModel = function(){
         infowindow.setMarker = null;
       });
       // Foursquare API
-    var foursquareUrl = "https://api.foursquare.com/v2/venues/search?query="
-    + marker.title +'&ll=' + marker.position.lat() + ',' +marker.position.lng()+
-    '&client_id=WZBPPUK0LEKJUVBPOK33MHS5EZZNNYNJ0XYLKYEA1BE5JPT3\
-     &client_secret=IIFBYWMNBO0KIZ0XJKO5BIWQ1BHFGJZZQKGEL4E1ZUUY4T5F&v=20170711';
+    var foursquareUrl = "https://api.foursquare.com/v2/venues/search?query="+
+     marker.title +'&ll=' + marker.position.lat() + ',' +marker.position.lng()+
+    '&client_id=WZBPPUK0LEKJUVBPOK33MHS5EZZNNYNJ0XYLKYEA1BE5JPT3' +
+    '&client_secret=IIFBYWMNBO0KIZ0XJKO5BIWQ1BHFGJZZQKGEL4E1ZUUY4T5F&v=20170711';
     var foursquareRequestTimeout = setTimeout(function(){
         window.alert("Failed to get Foursquare resources");
     }, 8000);
@@ -181,15 +182,13 @@ var ViewModel = function(){
 
      // Open the infowindow on the correct marker
       infowindow.open(map, marker);
-      map.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.position, 15));
-
       //CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 15f);
       marker.setAnimation(google.maps.Animation.BOUNCE)
       setTimeout(function() {
         marker.setAnimation(null);
      	}, 2100);
 
-    }
+    };
   }
 
 // Initialize the Knockout View Model
