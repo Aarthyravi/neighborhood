@@ -112,7 +112,6 @@ var ViewModel = function(){
   // Initialize infowindow
   infowindow = new google.maps.InfoWindow();
 
-
  // The following group uses the location array to create an array of markers on initialize.
   for (var i = 0; i < initialLocation.length; i++) {
 
@@ -137,10 +136,11 @@ var ViewModel = function(){
 
   // Create an onclick event to open an infowindow at each marker.
   marker.addListener('click', clickMarker);
-  function clickMarker() {
-      populateInfoWindow(this, infowindow);
-  }
  }
+
+   function clickMarker() {
+       populateInfoWindow(this, infowindow);
+   }
 }
 
   // This function populates the infowindow when the marker is clicked. We'll only allow
@@ -182,13 +182,12 @@ var ViewModel = function(){
 
      // Open the infowindow on the correct marker
       infowindow.open(map, marker);
-      //CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 15f);
-      marker.setAnimation(google.maps.Animation.BOUNCE)
+      marker.setAnimation(google.maps.Animation.BOUNCE);
       setTimeout(function() {
         marker.setAnimation(null);
      	}, 2100);
 
-    };
+    }
   }
 
 // Initialize the Knockout View Model
