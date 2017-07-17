@@ -137,7 +137,7 @@ var ViewModel = function(){
 
   // Create an onclick event to open an infowindow at each marker.
   marker.addListener('click', function() {
-    populateInfoWindow(this, infowindow);
+      populateInfoWindow(this, infowindow);
   });
  }
 }
@@ -146,7 +146,8 @@ var ViewModel = function(){
   // one infowindow which will open at the marker that is clicked, and populate based
   // on that markers position.
   function populateInfoWindow(marker, infowindow) {
-    // Check to make sure the infowindow is not already opened on this marker.
+
+  // Check to make sure the infowindow is not already opened on this marker.
   if (infowindow.marker != marker) {
       infowindow.marker = marker;
       infowindow.setContent('');
@@ -156,7 +157,10 @@ var ViewModel = function(){
         infowindow.setMarker = null;
       });
       // Foursquare API
-    var foursquareUrl = "https://api.foursquare.com/v2/venues/search?query="+ marker.title +'&ll=' + marker.position.lat() + ',' +marker.position.lng()+'&client_id=WZBPPUK0LEKJUVBPOK33MHS5EZZNNYNJ0XYLKYEA1BE5JPT3&client_secret=IIFBYWMNBO0KIZ0XJKO5BIWQ1BHFGJZZQKGEL4E1ZUUY4T5F&v=20170711';
+    var foursquareUrl = "https://api.foursquare.com/v2/venues/search?query="
+    + marker.title +'&ll=' + marker.position.lat() + ',' +marker.position.lng()+
+    '&client_id=WZBPPUK0LEKJUVBPOK33MHS5EZZNNYNJ0XYLKYEA1BE5JPT3\
+     &client_secret=IIFBYWMNBO0KIZ0XJKO5BIWQ1BHFGJZZQKGEL4E1ZUUY4T5F&v=20170711';
     var foursquareRequestTimeout = setTimeout(function(){
         window.alert("Failed to get Foursquare resources");
     }, 8000);
@@ -167,15 +171,24 @@ var ViewModel = function(){
       success: function(data){
         var fourSq = data.response.venues[0];
         infowindow.setContent('<div><h3>' + fourSq.name + '</h3>' +
-           fourSq.location.address + '</div><div>' + fourSq.location.city +'</div>');
+           fourSq.location.address + '</div><div>' +
+           fourSq.location.city +'</div>');
 
         clearTimeout(foursquareRequestTimeout);
       }
     });
 
 
-      // Open the infowindow on the correct marker
+     // Open the infowindow on the correct marker
       infowindow.open(map, marker);
+      map.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.position, 15));
+
+      //CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 15f);
+      marker.setAnimation(google.maps.Animation.BOUNCE)
+      setTimeout(function() {
+        marker.setAnimation(null);
+     	}, 2100);
+
     }
   }
 
