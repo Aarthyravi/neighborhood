@@ -1,5 +1,5 @@
 /*
- * Open the drawer when the menu ison is clicked.
+ * Open the drawer when the menu icon is clicked.
  */
 var menu = document.querySelector('#menu');
 var drawer = document.querySelector('.nav');
