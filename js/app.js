@@ -41,7 +41,7 @@ var initialLocation = [
   }
 ];
 
-var locationInfo = function (data) {
+var locationInformation = function (data) {
   this.title = (data.title);
   this.location = (data.location);
   this.marker = (data.marker);
@@ -74,7 +74,7 @@ var ViewModel = function () {
   this.locationList = ko.observableArray([]);
 
   initialLocation.forEach(function (locationItem) {
-    self.locationList.push(new locationInfo(locationItem));
+    self.locationList.push(new locationInformation(locationItem));
   });
 
   this.changeLocation = function (clickLocation) {
