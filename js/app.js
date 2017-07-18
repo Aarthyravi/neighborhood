@@ -7,7 +7,6 @@ var initialLocation = [
    title: 'Kaiser Permanente Medical Center',
    location: {lat: 37.336,lng: -121.9979},
  },
-
  {
    title: 'Lucky SuperMarket',
    location: {lat: 37.3540, lng: -121.9980},
@@ -69,6 +68,7 @@ var map;
 var markers = [];
 
 var ViewModel = function(){
+
   var self = this;
   this.searchTitle = ko.observable('');
 
@@ -81,6 +81,7 @@ var ViewModel = function(){
   this.changeLocation = function(clickLocation) {
     populateInfoWindow(clickLocation.marker, infowindow);
   };
+
 
   // Creates the search function to return matching list items and markers.
   this.List = ko.computed( function() {
@@ -101,6 +102,7 @@ var ViewModel = function(){
     }
   },self);
 };
+
 
   function initMap(){
   // Initialize Google map
@@ -157,14 +159,12 @@ var ViewModel = function(){
       infowindow.addListener('closeclick',function(){
         infowindow.setMarker = null;
       });
+
       // Foursquare API
     var foursquareUrl = "https://api.foursquare.com/v2/venues/search?query="+
      marker.title +'&ll=' + marker.position.lat() + ',' +marker.position.lng()+
     '&client_id=WZBPPUK0LEKJUVBPOK33MHS5EZZNNYNJ0XYLKYEA1BE5JPT3' +
     '&client_secret=IIFBYWMNBO0KIZ0XJKO5BIWQ1BHFGJZZQKGEL4E1ZUUY4T5F&v=20170711';
-    var foursquareRequestTimeout = setTimeout(function(){
-        window.alert("Failed to get Foursquare resources");
-    }, 8000);
 
     $.ajax({
       url: foursquareUrl,
@@ -174,8 +174,9 @@ var ViewModel = function(){
         infowindow.setContent('<div><h3>' + fourSq.name + '</h3>' +
            fourSq.location.address + '</div><div>' +
            fourSq.location.city +'</div>');
-
-        clearTimeout(foursquareRequestTimeout);
+      },
+      error: function() {
+        alert("There was an error.Failed to get Foursquare resources Try again please!");
       }
     });
 
