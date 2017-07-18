@@ -1,6 +1,6 @@
 # Neighborhood Map
   * Here I have developed a single-page application featuring a map of neighborhood
-     1. index.html file is used to open this app.
+     * index.html file is used to open this app.
   * Google map loaded from Maps API.
   * App display the locations by default when the page is loaded.
   * Clicking a marker on the map open the information window (infowindow) about the location.
