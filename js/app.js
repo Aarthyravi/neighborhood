@@ -193,3 +193,8 @@ var ViewModel = function(){
 // Initialize the Knockout View Model
 var vm = new ViewModel();
 ko.applyBindings(vm);
+
+//Error handling
+function errorHandling() {
+	alert("Google Maps has failed to load. Please check your internet connection and try again.");
+}
