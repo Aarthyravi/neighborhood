@@ -1,6 +1,8 @@
 # Neighborhood Map
   * Here I have developed a single-page application featuring a map of neighborhood
      * index.html file is used to open this app.
+     * js folder contains app.js that has used to Design MVVM pattern,to create Knockout framework, and handling ajax request.
+     * js folder must contain jquery.min.js that has used to ajax request and knockout-3.4.2.js used to MVVM pattern. 
   * Google map loaded from Maps API.
   * App display the locations by default when the page is loaded.
   * Clicking a marker on the map open the information window (infowindow) about the location.
