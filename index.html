@@ -11,8 +11,8 @@
     <div class="container">
       <div class="options-box">
       <header>
-        <h1 class="header__title">Santa Clara places</h1>
-        <a id="menu" class="header__menu">
+        <h1 class="header_title">Santa Clara places</h1>
+        <a id="menu" class="header_menu">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"/>
           </svg>
@@ -25,37 +25,23 @@
           <div>
             <h4> Places In Santa Clara</h4>
           <nav  id="drawer" class="nav">
-            <ul class="nav__list" data-bind="foreach: List">
-              <li data-bind="click: $parent.changeLocation, text: title" class="nav__item"></li>
+            <ul class="nav_list" data-bind="foreach: List">
+              <li data-bind="click: $parent.changeLocation, text: title" class="nav_item"></li>
             </ul>
           </nav>
             </div>
         </aside>
        </div>
-      <div id="map"></div>
+      <main id = "map">
+      </main>
     </div>
 
    <script src="js/knockout-3.4.2.js"></script>
    <script src="js/jquery.min.js"></script>
+   <script src="js/menu.js"></script>
    <script src="js/app.js"></script>
-   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdH6Cb0Qvwh-_UCh5gAQzWLVEQbi3GW1k&v=3&callback=initMap" onerror="errorHandling"></script>
-  <script>
-     /*
-      * Open the drawer when the menu ison is clicked.
-      */
-     var menu = document.querySelector('#menu');
-     var drawer = document.querySelector('.nav');
-
-     menu.addEventListener('click', function(e) {
-       drawer.classList.toggle('open');
-       e.stopPropagation();
-     });
-
-     $( '.nav li' ).on("click", function(){
-       $('.nav').removeClass('open');
-     });
- </script>
- <footer>
+   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdH6Cb0Qvwh-_UCh5gAQzWLVEQbi3GW1k&v=3&callback=initMap" onerror="errorHandling()"></script>
+   <footer>
    <div class = "foot" align="center">
       <p>Designed By Aarthy</p>
   </div>
