@@ -32,3 +32,7 @@ Knockout used to handle the list, filter.
        var foursquareRequestTimeout = setTimeout(function(){
         window.alert("Failed to get Foursquare resources");
        }, 8000);
+    
+      function errorHandling() {
+	           alert("Google Maps has failed to load. Please check your internet connection and try again.");
+      }
