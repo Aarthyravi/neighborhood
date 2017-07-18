@@ -1,5 +1,6 @@
 # Neighborhood Map
   * Here I have developed a single-page application featuring a map of neighborhood
+     1. index.html file is used to open this app.
   * Google map loaded from Maps API.
   * App display the locations by default when the page is loaded.
   * Clicking a marker on the map open the information window (infowindow) about the location.
@@ -8,7 +9,7 @@
   * Added functionality using third-party APIs to provide information when a map marker or list view entry is clicked.
     (location name,location address & location city)
  
-# App visit is here <https://aarthyravi.github.io/neighborhood/> 
+App visit is here <https://aarthyravi.github.io/neighborhood/> 
 
 # Setup
 Download the Knockout framework. 
