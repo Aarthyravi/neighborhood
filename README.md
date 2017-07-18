@@ -7,6 +7,8 @@
   * The list of locations can be filterable with a text input.Filtering the list also filters the markers on the map. 
   * Added functionality using third-party APIs to provide information when a map marker or list view entry is clicked.
     (location name,location address & location city)
+ 
+# App visit is here <https://aarthyravi.github.io/neighborhood/> 
 
 # Setup
 Download the Knockout framework. 
